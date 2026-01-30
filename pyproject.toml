@@ -1,0 +1,40 @@
+[project]
+name = "vehicle-mcp"
+version = "0.1.0"
+description = "MCP server providing unified vehicle control across multiple brands"
+license = "Apache-2.0"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "myskoda>=2.0.0",
+]
+
+[project.scripts]
+vehicle-mcp = "vehicle_mcp.server:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+    "pyrefly>=0.18",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vehicle_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/vehicle_mcp"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pyrefly]
+python_version = "3.13"
