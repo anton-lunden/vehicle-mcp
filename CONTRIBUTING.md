@@ -18,7 +18,8 @@ cd vehicle-mcp
 # Install dependencies
 uv sync --dev
 
-# Run linting
+# Format and lint
+uv run ruff format
 uv run ruff check .
 
 # Run type checking
@@ -27,7 +28,7 @@ uv run pyrefly check src
 
 ## Running from Source
 
-To test locally with e.g Claude Desktop, add to your `claude_desktop_config.json`:
+To test locally, add to your MCP client configuration:
 
 ```json
 {
@@ -45,8 +46,10 @@ To test locally with e.g Claude Desktop, add to your `claude_desktop_config.json
 }
 ```
 
-## Code Style
+To test the server directly from the terminal:
 
-- Format with `ruff format`
-- Lint with `ruff check`
-- Type check with `pyrefly`
+```bash
+(printf '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1"}}}\n'; sleep 3; printf '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}\n'; sleep 1) | \
+  env BRAND=skoda USERNAME=your-email@example.com PASSWORD=your-password uv run python -m vehicle_mcp
+```
+

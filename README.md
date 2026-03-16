@@ -1,4 +1,6 @@
-# Vehicle MCP Server
+# Vehicle MCP
+
+[![PyPI](https://img.shields.io/pypi/v/vehicle-mcp)](https://pypi.org/project/vehicle-mcp)
 
 A Model Context Protocol (MCP) server for controlling your vehicle. Check battery status, control climate, lock/unlock doors, and more — from your AI assistant.
 
@@ -6,11 +8,13 @@ A Model Context Protocol (MCP) server for controlling your vehicle. Check batter
 
 **Supported brands:**
 
-| Brand | Tools | Uses |
-|-------|-------|------|
-| Skoda | All | https://github.com/skodaconnect/myskoda |
+| Brand | Uses |
+|-------|------|
+| Skoda | https://github.com/skodaconnect/myskoda |
 
-**Tools:**
+## Tools
+
+`get_vehicle_info` and `get_vehicle_status` are always available. The remaining tools are enabled based on your vehicle's detected capabilities.
 
 | Tool | Description |
 |------|-------------|
@@ -23,19 +27,16 @@ A Model Context Protocol (MCP) server for controlling your vehicle. Check batter
 | `lock_vehicle` | Lock vehicle |
 | `unlock_vehicle` | Unlock vehicle |
 
-## Installation
+## Usage
 
-<details>
-<summary>Claude Desktop</summary>
-
-Add to your `claude_desktop_config.json`:
+Add to your MCP client configuration:
 
 ```json
 {
   "mcpServers": {
     "vehicle": {
-      "command": "docker",
-      "args": ["run", "-i", "--rm", "-e", "BRAND", "-e", "USERNAME", "-e", "PASSWORD", "ghcr.io/anton-lunden/vehicle-mcp"],
+      "command": "uvx",
+      "args": ["vehicle-mcp"],
       "env": {
         "BRAND": "skoda",
         "USERNAME": "your-email@example.com",
@@ -46,48 +47,26 @@ Add to your `claude_desktop_config.json`:
 }
 ```
 
-</details>
-
-<details>
-<summary>Claude Code</summary>
-
-```bash
-claude mcp add vehicle \
-  -e BRAND=skoda \
-  -e USERNAME=your-email@example.com \
-  -e PASSWORD=your-password \
-  -- docker run -i --rm -e BRAND -e USERNAME -e PASSWORD ghcr.io/anton-lunden/vehicle-mcp
-```
-
-</details>
-
-## Configuration
-
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `BRAND` | Yes | Vehicle brand (`skoda`) |
-| `USERNAME` | Yes | Email for your vehicle's connected services (e.g., Skoda Connect) |
+| `USERNAME` | Yes | Email for your vehicle's connected services |
 | `PASSWORD` | Yes | Password for your vehicle's connected services |
 | `VIN` | No | Vehicle VIN (auto-detects if not set) |
-
-### Skoda
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `SECURE_PIN` | For lock/unlock | S-PIN configured in Skoda Connect app |
+| `SECURE_PIN` | For lock/unlock (Skoda) | S-PIN configured in Skoda Connect app |
 
 ## Multiple Vehicles
 
 ### Different accounts
 
-If your vehicles are on separate accounts, just add multiple server entries. The VIN will be auto-detected:
+Add multiple server entries — VIN will be auto-detected:
 
 ```json
 {
   "mcpServers": {
     "my-skoda": {
-      "command": "docker",
-      "args": ["run", "-i", "--rm", "-e", "BRAND", "-e", "USERNAME", "-e", "PASSWORD", "ghcr.io/anton-lunden/vehicle-mcp"],
+      "command": "uvx",
+      "args": ["vehicle-mcp"],
       "env": {
         "BRAND": "skoda",
         "USERNAME": "me@example.com",
@@ -95,8 +74,8 @@ If your vehicles are on separate accounts, just add multiple server entries. The
       }
     },
     "partners-skoda": {
-      "command": "docker",
-      "args": ["run", "-i", "--rm", "-e", "BRAND", "-e", "USERNAME", "-e", "PASSWORD", "ghcr.io/anton-lunden/vehicle-mcp"],
+      "command": "uvx",
+      "args": ["vehicle-mcp"],
       "env": {
         "BRAND": "skoda",
         "USERNAME": "partner@example.com",
@@ -109,14 +88,14 @@ If your vehicles are on separate accounts, just add multiple server entries. The
 
 ### Same account
 
-If you have multiple vehicles on the same account, specify the VIN for each:
+Specify the VIN for each vehicle:
 
 ```json
 {
   "mcpServers": {
     "family-car": {
-      "command": "docker",
-      "args": ["run", "-i", "--rm", "-e", "BRAND", "-e", "USERNAME", "-e", "PASSWORD", "-e", "VIN", "ghcr.io/anton-lunden/vehicle-mcp"],
+      "command": "uvx",
+      "args": ["vehicle-mcp"],
       "env": {
         "BRAND": "skoda",
         "USERNAME": "me@example.com",
@@ -125,8 +104,8 @@ If you have multiple vehicles on the same account, specify the VIN for each:
       }
     },
     "weekend-car": {
-      "command": "docker",
-      "args": ["run", "-i", "--rm", "-e", "BRAND", "-e", "USERNAME", "-e", "PASSWORD", "-e", "VIN", "ghcr.io/anton-lunden/vehicle-mcp"],
+      "command": "uvx",
+      "args": ["vehicle-mcp"],
       "env": {
         "BRAND": "skoda",
         "USERNAME": "me@example.com",
