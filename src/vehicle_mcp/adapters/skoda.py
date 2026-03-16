@@ -37,7 +37,7 @@ class SkodaAdapter(VehicleAdapter):
         """
         if self._myskoda is None:
             self._session = ClientSession()
-            self._myskoda = MySkoda(self._session)
+            self._myskoda = MySkoda(self._session, mqtt_enabled=False)
             await self._myskoda.connect(self._username, self._password)
 
             # If no VIN provided, get the first vehicle
