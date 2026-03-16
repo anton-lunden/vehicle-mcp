@@ -586,7 +586,7 @@ wheels = [
 
 [[package]]
 name = "myskoda"
-version = "2.5.1"
+version = "2.7.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -596,9 +596,9 @@ dependencies = [
     { name = "pyjwt" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ac/32/0b36dac45aebdb17894af98bf601b9bcc75fb5f704861bf71ec0dbd3ffc9/myskoda-2.5.1.tar.gz", hash = "sha256:0f536a4affae8d3568d1e5255622f19d4ab0ebe4d385f2f89214d533785b44fc", size = 335251, upload-time = "2025-12-17T10:57:16.484Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3a/5d/32b60675f3f565704dd381ff26b20d781e63bb6d1c8073cef298106599fa/myskoda-2.7.2.tar.gz", hash = "sha256:0c284b0602d025aa71f5d531ea85ee5f6c4541f04d4c4278b2b5299cbe600a0c", size = 343746, upload-time = "2026-03-16T08:40:15.355Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2e/c1/ff331edab4a408f6ba9412a8836de2490699a1bcb8d3eb7d31bc1c8f39d3/myskoda-2.5.1-py3-none-any.whl", hash = "sha256:e479c27844375ecf3fa0a8b773b5611d330c7689bf191f37f21cf9ce5e1444c6", size = 69954, upload-time = "2025-12-17T10:57:15.237Z" },
+    { url = "https://files.pythonhosted.org/packages/ff/fc/f4f5ca35a6c579e75a1f38fbece9ac480b744d2a6400d379441ca0796710/myskoda-2.7.2-py3-none-any.whl", hash = "sha256:3a82076d75d217dac872473e083266e43589957f910c9b0693c4ce4c4ad38d7c", size = 71019, upload-time = "2026-03-16T08:40:14.367Z" },
 ]
 
 [[package]]
@@ -837,11 +837,11 @@ wheels = [
 
 [[package]]
 name = "pyjwt"
-version = "2.10.1"
+version = "2.12.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e7/46/bd74733ff231675599650d3e47f361794b22ef3e3770998dda30d3b63726/pyjwt-2.10.1.tar.gz", hash = "sha256:3cc5772eb20009233caf06e9d8a0577824723b44e6648ee0a2aedb6cf9381953", size = 87785, upload-time = "2024-11-28T03:43:29.933Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c2/27/a3b6e5bf6ff856d2509292e95c8f57f0df7017cf5394921fc4e4ef40308a/pyjwt-2.12.1.tar.gz", hash = "sha256:c74a7a2adf861c04d002db713dd85f84beb242228e671280bf709d765b03672b", size = 102564, upload-time = "2026-03-13T19:27:37.25Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/61/ad/689f02752eeec26aed679477e80e632ef1b682313be70793d798c1d5fc8f/PyJWT-2.10.1-py3-none-any.whl", hash = "sha256:dcdd193e30abefd5debf142f9adfcdd2b58004e644f25406ffaebd50bd98dacb", size = 22997, upload-time = "2024-11-28T03:43:27.893Z" },
+    { url = "https://files.pythonhosted.org/packages/e5/7a/8dd906bd22e79e47397a61742927f6747fe93242ef86645ee9092e610244/pyjwt-2.12.1-py3-none-any.whl", hash = "sha256:28ca37c070cad8ba8cd9790cd940535d40274d22f80ab87f3ac6a713e6e8454c", size = 29726, upload-time = "2026-03-13T19:27:35.677Z" },
 ]
 
 [package.optional-dependencies]
@@ -1168,7 +1168,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "mcp", extras = ["cli"], specifier = ">=1.0.0" },
-    { name = "myskoda", specifier = ">=2.0.0" },
+    { name = "myskoda", specifier = ">=2.7.2" },
 ]
 
 [package.metadata.requires-dev]

@@ -2,11 +2,12 @@
 name = "vehicle-mcp"
 version = "0.1.0"
 description = "MCP server providing unified vehicle control across multiple brands"
+readme = "README.md"
 license = "Apache-2.0"
 requires-python = ">=3.13"
 dependencies = [
     "mcp[cli]>=1.0.0",
-    "myskoda>=2.0.0",
+    "myskoda>=2.7.2",
 ]
 
 [project.scripts]
