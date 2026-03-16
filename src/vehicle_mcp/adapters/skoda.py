@@ -2,8 +2,10 @@ from typing import Any
 
 from aiohttp import ClientSession
 from myskoda import MySkoda  # type: ignore[import-untyped]
+from myskoda.models.info import CapabilityId  # type: ignore[import-untyped]
 
 from vehicle_mcp.adapters.base import VehicleAdapter
+from vehicle_mcp.adapters.vehicle_capability import VehicleCapability
 
 
 class SkodaAdapter(VehicleAdapter):
@@ -48,6 +50,28 @@ class SkodaAdapter(VehicleAdapter):
         if self._vin is None:
             raise RuntimeError("VIN was not set during connection")
         return self._myskoda, self._vin
+
+    async def get_capabilities(self) -> VehicleCapability:
+        """Detect supported capabilities from the Skoda API."""
+        myskoda, vin = await self._ensure_connected()
+        info = await myskoda.get_info(vin)
+
+        features = VehicleCapability(0)
+
+        if (
+            info.has_capability(CapabilityId.CHARGING)
+            or info.has_capability(CapabilityId.CHARGING_MEB)
+            or info.has_capability(CapabilityId.CHARGING_MQB)
+        ):
+            features |= VehicleCapability.CHARGING
+
+        if info.has_capability(CapabilityId.AIR_CONDITIONING):
+            features |= VehicleCapability.CLIMATE
+
+        if info.has_capability(CapabilityId.ACCESS):
+            features |= VehicleCapability.LOCK
+
+        return features
 
     async def get_vehicle_info(self) -> dict[str, Any]:
         """Get static vehicle information."""

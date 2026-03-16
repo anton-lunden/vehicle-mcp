@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
+from vehicle_mcp.adapters.vehicle_capability import VehicleCapability
+
 
 class VehicleAdapter(ABC):
     """Abstract base class for vehicle adapters.
@@ -8,6 +10,11 @@ class VehicleAdapter(ABC):
     All vehicle brand adapters must implement this interface to provide
     a unified API for vehicle control regardless of the underlying client library.
     """
+
+    @abstractmethod
+    async def get_capabilities(self) -> VehicleCapability:
+        """Detect and return supported capabilities for this vehicle."""
+        ...
 
     @abstractmethod
     async def get_vehicle_info(self) -> dict[str, Any]:
