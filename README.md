@@ -47,6 +47,29 @@ Add to your MCP client configuration:
 }
 ```
 
+<details>
+<summary>Docker</summary>
+
+Docker images track `main` and may include unreleased changes. For stable releases, use `uvx` above.
+
+```json
+{
+  "mcpServers": {
+    "vehicle": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "-e", "BRAND", "-e", "USERNAME", "-e", "PASSWORD", "ghcr.io/anton-lunden/vehicle-mcp"],
+      "env": {
+        "BRAND": "skoda",
+        "USERNAME": "your-email@example.com",
+        "PASSWORD": "your-password"
+      }
+    }
+  }
+}
+```
+
+</details>
+
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `BRAND` | Yes | Vehicle brand (`skoda`) |
