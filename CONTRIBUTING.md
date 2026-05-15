@@ -12,7 +12,7 @@ See [`src/vehicle_mcp/adapters/base.py`](src/vehicle_mcp/adapters/base.py) for t
 
 ```bash
 # Clone the repo
-git clone https://github.com/anton-lunden/vehicle-mcp.git
+git clone https://github.com/antonlunden/vehicle-mcp.git
 cd vehicle-mcp
 
 # Install dependencies

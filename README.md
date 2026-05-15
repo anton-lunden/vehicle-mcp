@@ -57,7 +57,7 @@ Docker images track `main` and may include unreleased changes. For stable releas
   "mcpServers": {
     "vehicle": {
       "command": "docker",
-      "args": ["run", "-i", "--rm", "-e", "BRAND", "-e", "USERNAME", "-e", "PASSWORD", "ghcr.io/anton-lunden/vehicle-mcp"],
+      "args": ["run", "-i", "--rm", "-e", "BRAND", "-e", "USERNAME", "-e", "PASSWORD", "ghcr.io/antonlunden/vehicle-mcp"],
       "env": {
         "BRAND": "skoda",
         "USERNAME": "your-email@example.com",
